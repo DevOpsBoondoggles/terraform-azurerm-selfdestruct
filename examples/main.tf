@@ -1,5 +1,5 @@
 module "destroy" {
-  source = "gabrielmccoll/terraform-azurerm-selfdestruct"
+  source = "gabrielmccoll/selfdestruct/azurerm"
   resource_group_name = azurerm_resource_group.example.name
   hours = 1
   depends_on = [
