@@ -1,5 +1,5 @@
 This module is designed to make a terraform deployment self destruct in a certain amount of time. 
-Essentially, after <hours> it destroys <resource_group>.
+Essentially, after `<hours>` it destroys `<resource_group>`.
 
 Use Case:
 
