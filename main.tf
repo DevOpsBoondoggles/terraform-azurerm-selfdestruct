@@ -11,14 +11,11 @@ terraform {
   }
 }
 
-data "azurerm_resource_group" "destroy" {
-  name = var.resource_group_name
-}
 
 resource "azurerm_automation_account" "selfdestruct" {
-  name                = data.azurerm_resource_group.destroy.name
-  location            = data.azurerm_resource_group.destroy.location
-  resource_group_name = data.azurerm_resource_group.destroy.name
+  name                = var.resource_group_name
+  location            = var.location
+  resource_group_name = var.resource_group_name
   sku_name            = "Basic"
   tags = {
     environment = "github.com/gabrielmccoll/terraform-azurerm-selfdestruct"
@@ -31,7 +28,7 @@ resource "azurerm_automation_account" "selfdestruct" {
 #give permissions to the automation account to be able to delete the resource group
 resource "azurerm_role_assignment" "auto_rg" {
   role_definition_name = "Contributor"
-  scope = data.azurerm_resource_group.destroy.id
+  scope = var.resource_group_id
   principal_id = azurerm_automation_account.selfdestruct.identity[0].principal_id
 }
 
