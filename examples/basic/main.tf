@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "example" {
 resource "azurerm_linux_virtual_machine_scale_set" "example" {
     name = "Example resource that will be destroyed"
     resource_group_name = azurerm_resource_group.example.name
-    location = resource_group_name = azurerm_resource_group.example.location
+    location = azurerm_resource_group.example.location
 }
 
 module "destroy" {
